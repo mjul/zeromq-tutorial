@@ -4,14 +4,13 @@ This is a tutorial to using the ZeroMQ message queue with Clojure.
 
 ## Usage
 
-FIXME: write
+Read the source of and the tests to see examples of using ZeroMQ in Clojure.
+If you create more examples, please contribute a patch!
 
 ## Installation
 
 In order to use this software, ZeroMQ must be installed. 
-Please refer to its website for details on how to install it:
-
-[ZeroMQ](http://www.zeromq.org)
+Please refer to its website for details on how to install it: [ZeroMQ](http://www.zeromq.org)
 
 You need to install both ZeroMQ and the Java bindings (jzmq).
 
@@ -22,15 +21,14 @@ For installation on Mac OSX I found the following guides to be helpful:
 
 After you have installed these libraries run
 
-  lein deps
-  lein test
+    lein deps
+    lein test
 
 You may have to edit the project.clj file to point to the correct location of the ZeroMQ libraries:
 
-  ;; This sets the 'java.library.path' property
-  ;; so Java can find the ZeroMQ dylib
-  :native-path "/usr/local/lib"
-
+	;; This sets the 'java.library.path' property
+	;; so Java can find the ZeroMQ dylib
+	:native-path "/usr/local/lib"
 
 ## License
 
@@ -45,5 +43,6 @@ the license terms.
 * [Source code on GitHub](http://github.com/mjul/zeromq-tutorial)
 
 Follow me:
-* Twitter: @mjul
+
+* Twitter: @mjul [Martin Jul on Twitter](http://twitter.com/mjul)
 
