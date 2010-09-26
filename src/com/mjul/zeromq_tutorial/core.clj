@@ -25,6 +25,10 @@
 (defn recv-msg! [socket]
   (deserialize (zmq/recv socket)))
 
+
+;; echo-server and echo-client are the rrserver and rrclient examples from the zeromq examples.
+;; Each exchange is a pair of messages between the client and server: a request and a reply.
+
 (defn echo-server [ctx endpoint]
   (with-open [socket (make-socket ctx :reply)]
     (zmq/bind socket endpoint)
@@ -40,17 +44,18 @@
 	  result {:request msg, :reply reply}]
       result)))
 
+;; push-pull-producer and push-pull-consumer use one-way messaging. No reply is sent.
+;; This pattern is useful for async communication or for distributing commands to worker processes.
 
-(defn pusher [ctx endpoint msgs]
+(defn push-pull-producer [ctx endpoint msgs]
   (with-open [socket (make-socket ctx :push)]
     (zmq/connect socket endpoint)
-    (doseq [msg msgs]
-      (send-msg! socket msg))
+    (doseq [m msgs]
+      (send-msg! socket m))
     msgs))
 
-(defn puller [ctx endpoint n]
+(defn push-pull-consumer [ctx endpoint n]
   (with-open [socket (make-socket ctx :pull)]
     (zmq/bind socket endpoint)
-    (let [msgs (doall (for [x (range n)]
-			 (recv-msg! socket)))]
-      msgs)))
+    (doall (for [i (range n)]
+	     (recv-msg! socket)))))

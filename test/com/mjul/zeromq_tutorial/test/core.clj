@@ -24,8 +24,8 @@
 	    num-msg 10
 	    msgs (for [i (range num-msg)]
 		   (str "Message number " i))
-	    sent (future (pusher ctx endpoint msgs))
-	    recvd (puller ctx endpoint num-msg)]
+	    sent (future (push-pull-producer ctx endpoint msgs))
+	    recvd (push-pull-consumer ctx endpoint num-msg)]
 	(is (= num-msg (count @sent)) "Expected correct number of messages sent.")
 	(is (= msgs recvd)) "Expected to receive the messages.")))
 
