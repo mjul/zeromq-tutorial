@@ -41,16 +41,16 @@
       result)))
 
 
-(defn pusher [ctx endpoint num]
-  (let [socket (make-socket ctx :push)]
-    (zmq/bind socket endpoint)
-    (doseq [x num]
-      (send-msg! socket (str "Message " x)))
-    (close-socket socket)))
-
-(defn puller [ctx endpoint num]
-  (let [socket (make-socket ctx :pull)]
+(defn pusher [ctx endpoint msgs]
+  (with-open [socket (make-socket ctx :push)]
     (zmq/connect socket endpoint)
-    (doseq [x num]
-      (println (recv-msg! socket)))
-    (close-socket socket)))
+    (doseq [msg msgs]
+      (send-msg! socket msg))
+    msgs))
+
+(defn puller [ctx endpoint n]
+  (with-open [socket (make-socket ctx :pull)]
+    (zmq/bind socket endpoint)
+    (let [msgs (doall (for [x (range n)]
+			 (recv-msg! socket)))]
+      msgs)))
