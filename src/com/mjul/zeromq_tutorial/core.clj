@@ -1,4 +1,4 @@
-(ns dk.mjul.zeromq-tutorial.core
+(ns com.mjul.zeromq-tutorial.core
   (:use [clojure.contrib.json])
   (:require [org.zeromq.clojure :as zmq]))
 

@@ -1,5 +1,5 @@
-(ns dk.mjul.zeromq-tutorial.test.core
-  (:use [dk.mjul.zeromq-tutorial.core] :reload-all)
+(ns com.mjul.zeromq-tutorial.test.core
+  (:use [com.mjul.zeromq-tutorial.core] :reload-all)
   (:use [clojure.test]))
 
 (deftest serialization-test
