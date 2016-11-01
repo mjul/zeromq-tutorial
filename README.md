@@ -4,7 +4,7 @@ This is a tutorial to using the ZeroMQ message queue with Clojure.
 
 ## Usage
 
-Read the source of and the tests to see examples of using ZeroMQ in Clojure.
+Read the source and the tests to see examples of using ZeroMQ in Clojure.
 If you create more examples, please contribute a patch!
 
 ## Installation
